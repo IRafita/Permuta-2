@@ -1,0 +1,61 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\begin{document}
+Si ordenem per exemple la llista 0 1 1 2
+\begin{enumerate}
+\setcounter{enumi}{-1}
+\item 0 1 1 2
+\item 0 1 2 1
+\item 0 2 1 1
+\item 1 0 1 2
+\item 1 0 2 1
+\item 1 1 0 2
+\item 1 1 2 0
+\item 1 2 0 1
+\item 1 2 1 0
+\item 2 0 1 1
+\item 2 1 0 1
+\item 2 1 1 0
+\end{enumerate}
+
+Ara volem treure el 7
+\begin{itemize}
+\item T = 7
+\item l = 0 1 1 2
+\item Pos = 12
+\item elements = 4
+	\begin{itemize}
+	\item tp = (T*elements)/Pos
+	\item b = BuscarMesPetit (tp) = Buscar (2)
+		\subitem b = B(1) = 1
+	\item o = * * * 1
+	\item T -= tp * b = 3*1 -> 4
+	\item Pos *= repe/elements = 2/4 -> 6
+	\end{itemize}
+
+\item T = 4
+\item elements = 3
+\item l = 0 1 2
+\item Pos = 6
+	\begin{itemize}
+	\item tp = (T*elements)/Pos = (4*3)/6 = 2
+	\item b = BuscarMesPetit (tp) = 2
+	\item o = * * 2 1
+	\item T -= tp * b = 2*2 -> 0
+	\item o = 1 0 2 1
+	\end{itemize}
+\end{itemize}
+
+Suposem que no se pot fer de petit a gran, ho almenys això està fora del nostre coneixement amb el plantejament que fem.
+$$T -\!\!\!= \frac{T \times elements \times b}{Pos}$$
+On b és on se troba el seu representant mínim.\\
+
+En conceqüència d'aquest, veiem que seria preferible fer canvis als programes anteriors per a evitar fer Parsers per poder-ho fer compatible
+\begin{itemize}
+\item next, fent que sigui al reves (m'explico, que el petit sigui ara el gran)
+\item Vector digit, fent que el sort, el faci del reves, ja que aixi no funcionara massa be
+\end{itemize}
+
+Gràcies a aquest algoritme, normalment podrem fer sense problemes obtimitzar molt d'espai
+\end{document}

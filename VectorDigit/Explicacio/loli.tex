@@ -1,0 +1,60 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\begin{document}
+Si ordenem per exemple la llista 0 1 1 2
+\begin{enumerate}
+\setcounter{enumi}{-1}
+\item 0 1 1 2
+\item 0 1 2 1
+\item 0 2 1 1
+\item 1 0 1 2
+\item 1 0 2 1
+\item 1 1 0 2
+\item 1 1 2 0
+\item 1 2 0 1
+\item 1 2 1 0
+\item 2 0 1 1
+\item 2 1 0 1
+\item 2 1 1 0
+\end{enumerate}
+
+Ara sabem que 1 2 0 1 és el 7, llavors com podem treurel directament?
+\begin{itemize}
+\item 1 2 0 1
+	\begin{itemize}
+	\item read = 0
+	\item list = {1}
+	\item Pos = 2
+	\item repe = 1
+	\item elements = 2
+		\subitem b = 0
+		\subitem D = 0
+	\end{itemize}
+
+\item 1 2 1 0
+	\begin{itemize}
+	\item read = 2
+	\item list = {1, 0}
+	\item Pos = 6
+	\item repe = 1
+	\item elements = 3
+		\subitem b = 2
+		\subitem D = 4
+	\end{itemize}
+
+\item 1 2 1 0
+	\begin{itemize}
+	\item read = 1
+	\item list = {2, 1, 0}
+	\item Pos = 12
+	\item repe = 2
+	\item elements = 4
+		\subitem b = 1
+		\subitem D = 7
+	\end{itemize}
+\end{itemize}
+Preferiblement de Petit a gran, ja que així el valor de Possiblitats és més fàcil de calcular.
+$$D +\!\!\!= \frac{Pos \times b}{elements}$$
+On b és on se troba.
+\end{document}

@@ -9,6 +9,27 @@ void ShowVector (int s, int *e)
 	printf ("\n");
 }
 
+int Possiblitats (int s, int*e)
+{
+	int tn, tv;
+	int o, ele, rep;
+
+	tn = e[--s];
+	o = 1; ele = 1; rep = 1;
+
+	while (s--)
+	{
+		tv = tn;
+		tn = e[s];
+		if (tn == tv)
+			rep++;
+		else
+			rep = 1;
+		o = (o * ++ele) / rep; /* Primer feia la divisio, cosa que malformava el resultat */
+	}
+	return o;
+}
+
 void MouElementDreta (int p, int *e)
 /* p es la posicio on se vol moure tot */
 {
@@ -52,7 +73,6 @@ int*e;	/* vector que transformarem al desitjat */ /* se suposa que esta ordenat 
 int T;	/* valor en que volem transformar el vector */
 int Pos;	/* Possiblitats totals del vector */
 {
-	int tps;	/* temporal Possiblitats / elemets */
 	int tvr;	/* temporal variable repetit */
 	int tr;		/* temporal repetit */
 
@@ -63,8 +83,11 @@ int Pos;	/* Possiblitats totals del vector */
 	int i, j;	/* index */
 	while (T)
 	{	
-		tps = Pos / s;
-		ti = T / tps; /* el -1, ja que se compta des del 0 i no pas 1 */
+		//if (tps)
+		/* Petit canvi, ja que fa divisio entera i no interesa amb ti = T / tps */
+			ti = (T * s) / Pos;
+		//else
+		//	return -2;
 
 /* Feina de buscar el mes petit que conte la possicio */
 		b = -1; /* per detectar els events sense fer masa codi */
@@ -100,7 +123,7 @@ int Pos;	/* Possiblitats totals del vector */
 		}
 
 /* operació intuitiva que em de fer */
-		T -= tps * b;
+		T -= (Pos * b) / s; /* el canvi per evitar errors numerics */
 		Pos = (Pos * tr) / s--;
 		if (!s)
 			return -1;

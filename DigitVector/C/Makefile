@@ -1,3 +1,3 @@
 all:
 	clear
-	gcc libPermutacio.c loli.c -Wall --debug
+	gcc libPermutacio.c binary.c -Wall --debug
